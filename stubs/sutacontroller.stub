@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\{{ class }};
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class {{ class }}Controller extends Controller
+{
+    public function index(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = (!empty($request->get('perPage'))) ? $request->get('perPage') : 25;
+        if (!empty($keyword)) {
+            $datas = {{ class }}::where('name', 'LIKE', "%$keyword%")->latest()->paginate($perPage);
+        } else {
+            $datas = {{ class }}::latest()->paginate($perPage);
+        }
+        return view('{{ viewname }}.index', compact('datas'));
+    }
+
+    public function create()
+    {
+        return view('{{ viewname }}.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+        ], [
+            'name.required' => 'ต้องกรอกข้อมูลนี้',
+        ]);
+
+        $inputData = $request->all();
+
+        {{ class }}::create($inputData);
+        return redirect()->route('{{ view }}.index')->with('success', 'สร้างข้อมูล{{ class }}เรียบร้อยแล้ว');
+    /*
+        $result = {{ class }}::create($inputData);
+        return redirect()->route('{{ view }}.show', $result->id);
+     */
+    }
+
+    public function show($id)
+    {
+        $data = {{ class }}::findOrFail($id);
+        return view('{{ viewname }}.show', compact('data'));
+    }
+
+    public function edit($id)
+    {
+        $data = {{ class }}::findOrFail($id);
+        return view('{{ viewname }}.edit', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+        ], [
+            'name.required' => 'ต้องกรอกข้อมูลนี้',
+        ]);
+
+        $inputData = $request->all();
+        $result = {{ class }}::findOrFail($id);
+        $result->update($inputData);
+
+        return redirect()->route('{{ view }}.index')->with('success', 'แก้ไขข้อมูล{{ class }}เรียบร้อยแล้ว');
+    
+    //  return redirect()->route('{{ view }}.show', $result->id);
+     
+    }
+
+    public function destroy($id)
+    {
+        {{ class }}::destroy($id);
+        return redirect()->route('{{ view }}.index')->with('info', 'ลบข้อมูล{{ class }}เรียบร้อยแล้ว');
+    }
+}

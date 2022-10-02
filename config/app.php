@@ -185,10 +185,11 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Suta007\Sutacrud\SutacrudServiceProvider::class,
         /*
          * Application Service Providers...
          */
+        App\Providers\HelperServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

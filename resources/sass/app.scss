@@ -1,7 +1,12 @@
-//@import "~bootstrap/scss/bootstrap";
-
+// Fonts
 @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@200;300;400;700;800&display=swap');
 
+// Variables
+//@import 'variables';
+//@import 'utilities';
+
+// Bootstrap
+//@import '~bootstrap/scss/bootstrap';
 @import "bt";
 
 $grays2: (
@@ -29,7 +34,8 @@ $colorset: (
     "grays":$grays2,
 );
 
-@each $key, $colors in $colorset {
+@each $key,
+$colors in $colorset {
 
     @each $color,
     $value in $colors {
@@ -39,7 +45,8 @@ $colorset: (
     }
 }
 
-@each $key, $colors in $colorset {
+@each $key,
+$colors in $colorset {
 
     @each $color,
     $value in $colors {
@@ -56,3 +63,5 @@ $colorset: (
 }
 
 @import "css";
+
+@import "datepicker";
