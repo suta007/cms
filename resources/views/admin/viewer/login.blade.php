@@ -12,22 +12,15 @@
 				กฤษฎาพงษ์ สุตะ
 			</div>
 		</div>
-		@if (session('status'))
-			<div class="fs-6 fw-bold text-success mb-4 text-center">
-				{{ session('status') }}
+		@if ($message = Session::get('error'))
+			<div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+				<small>{{ $message }}</small>
+				<button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		@endif
 		<div class="mt-4 px-5">
 			<form method="POST" action="{{ route('viewer.auth') }}">
 				@csrf
-
-				@if ($message = Session::get('error'))
-					<div class="alert alert-danger alert-block">
-						<button type="button" class="close" data-bs-dismiss="alert">×</button>
-						<strong>{{ $message }}</strong>
-					</div>
-				@endif
-
 				<div class="mb-3">
 					<label for="username" class="form-label">{{ __('Username') }}</label>
 					<input type="text" class="form-control @error('username') is-invalid @enderror" name="username" id="username" placeholder="Username" value="{{ old('username') }}" autocomplete="username" required autofocus>

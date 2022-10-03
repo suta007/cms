@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Viewer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class ViewerController extends Controller
@@ -14,9 +15,22 @@ class ViewerController extends Controller
         return view('admin.viewer.login');
     }
 
-    public function auth()
+    public function auth(Request $request)
     {
-        //
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ], [
+            'username.required' => 'ต้องกรอกข้อมูลนี้',
+            'password.required' => 'ต้องกรอกข้อมูลนี้',
+        ]);
+        if (Auth::guard('viewer')->attempt(['username' => $request->username, 'password' => $request->password])) {
+            $data = Auth::guard('viewer')->user();
+            $data->last_login = date('Y-m-d H:i:s');
+            $data->save();
+            return redirect('/');
+        }
+        return back()->withInput($request->only('username'))->with("error", "กรุณาตรวจสอบ Username และ Password อีกครั้ง");
     }
 
     public function index(Request $request)

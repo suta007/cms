@@ -14,9 +14,9 @@ class SettingController extends Controller
         $keyword = $request->get('search');
         $perPage = (!empty($request->get('perPage'))) ? $request->get('perPage') : 25;
         if (!empty($keyword)) {
-            $datas = Setting::where('name', 'LIKE', "%$keyword%")->latest()->paginate($perPage);
+            $datas = Setting::where('name', 'LIKE', "%$keyword%")->paginate($perPage);
         } else {
-            $datas = Setting::latest()->paginate($perPage);
+            $datas = Setting::paginate($perPage);
         }
         return view('admin.setting.index', compact('datas'));
     }
@@ -30,15 +30,17 @@ class SettingController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'value' => 'required|max:255',
         ], [
             'name.required' => 'ต้องกรอกข้อมูลนี้',
+            'value.required' => 'ต้องกรอกข้อมูลนี้',
         ]);
 
         $inputData = $request->all();
 
         Setting::create($inputData);
-        return redirect()->route('admin.setting.index')->with('success', 'สร้างข้อมูลSettingเรียบร้อยแล้ว');
-    /*
+        return redirect()->route('admin.setting.index')->with('success', 'ตั้งค่าเว็บเรียบร้อยแล้ว');
+        /*
         $result = Setting::create($inputData);
         return redirect()->route('admin.setting.show', $result->id);
      */
@@ -60,23 +62,25 @@ class SettingController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'value' => 'required|max:255',
         ], [
             'name.required' => 'ต้องกรอกข้อมูลนี้',
+            'value.required' => 'ต้องกรอกข้อมูลนี้',
         ]);
 
         $inputData = $request->all();
         $result = Setting::findOrFail($id);
         $result->update($inputData);
 
-        return redirect()->route('admin.setting.index')->with('success', 'แก้ไขข้อมูลSettingเรียบร้อยแล้ว');
+        return redirect()->route('admin.setting.index')->with('success', 'แก้ไขข้อมูลเรียบร้อยแล้ว');
 
-    //  return redirect()->route('admin.setting.show', $result->id);
+        //  return redirect()->route('admin.setting.show', $result->id);
 
     }
 
     public function destroy($id)
     {
         Setting::destroy($id);
-        return redirect()->route('admin.setting.index')->with('info', 'ลบข้อมูลSettingเรียบร้อยแล้ว');
+        return redirect()->route('admin.setting.index')->with('info', 'ลบข้อมูลเรียบร้อยแล้ว');
     }
 }

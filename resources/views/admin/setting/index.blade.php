@@ -22,9 +22,9 @@ $start = ($page - 1) * $perPage;
 @extends('layouts.app')
 @section('content')
 	<x-div class="mx-auto fw-bold fs-5 mb-2 col-12 col-xl-8 text-web">
-		Setting
+		คั้งค่าเว็บ
 		<a href="{{ route('admin.setting.create') }}" class="btn btn-web float-end mb-2">
-			<i class="fa fa-plus me-2" aria-hidden="true"></i> เพิ่มSetting
+			<i class="fa fa-plus me-2" aria-hidden="true"></i> ตั้งค่าเพิ่มเติม
 		</a>
 	</x-div>
 	<div class="clearfix"></div>
@@ -64,9 +64,10 @@ $start = ($page - 1) * $perPage;
 		<table class="table-bordered table-hover table" id="dataTable">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>Setting</th>
-					<th>Actions</th>
+					<th class="text-nowrap text-center" style="width: 1%;">#</th>
+					<th class="text-center">Name</th>
+					<th class="text-center">Value</th>
+					<th class="text-nowrap text-center" style="width: 1%;">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -74,8 +75,8 @@ $start = ($page - 1) * $perPage;
 					<tr>
 						<td class="text-nowrap text-center" style="width: 1%;">{{ $start + $loop->iteration }}</td>
 						<td>{{ $item->name }}</td>
+						<td>{{ $item->value }}</td>
 						<td class="text-nowrap" style="width: 1%;">
-							<a href="{{ route('admin.setting.show', $item->id) }}" data-tooltip="ดู{{ $item->name }}" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
 							<a href="{{ route('admin.setting.edit', $item->id) }}" data-tooltip="แก้ไข{{ $item->name }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
 
 							<form method="POST" action="{{ route('admin.setting.destroy', $item->id) }}" accept-charset="UTF-8" style="display:inline">

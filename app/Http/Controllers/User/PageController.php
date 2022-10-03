@@ -67,10 +67,11 @@ class PageController extends Controller
         ]);
 
         $inputData = $request->all();
+        $inputData["slug"] = Slug::slugify($request->name);
         $result = Page::findOrFail($id);
         $result->update($inputData);
 
-        return redirect()->route('user.page.index')->with('success', 'แก้ไขหน้าเว็บเรียบร้อยแล้ว');
+        return redirect()->back()->with('success', 'แก้ไขหน้าเว็บเรียบร้อยแล้ว');
 
         //  return redirect()->route('user.page.show', $result->id);
 

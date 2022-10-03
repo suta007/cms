@@ -20,9 +20,6 @@
 					</span>
 				@enderror
 			</div>
-
-
-
 			<div class="row mb-2">
 				<label for="content" class="col-form-label">เนื้อหา</label>
 				<textarea name="content" id="content"></textarea>
@@ -33,20 +30,12 @@
 			</div>
 		</form>
 	</x-div>
+	<script>
+		var token = '{{ csrf_token() }}';
+	</script>
 @endsection
 
 @section('scriptfile')
 	<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
-@endsection
-
-@section('script')
-	<script>
-		tinymce.init({
-			selector: 'textarea#content',
-			plugins: 'code table lists link image preview fullscreen media',
-			toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright alignjustify | indent outdent bullist numlist | link image | preview media fullscreen | code',
-			content_css: '/css/app.css'
-
-		});
-	</script>
+	<script src="{{ asset('js/mytunymce.js') }}"></script>
 @endsection
