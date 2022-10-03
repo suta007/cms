@@ -44,8 +44,8 @@
 		tinymce.init({
 			selector: 'textarea#content',
 			plugins: 'code table lists link image preview fullscreen media',
-			toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright alignjustify | indent outdent bullist numlist | link image | preview media fullscreen | code'
-
+			toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright alignjustify | indent outdent bullist numlist | link image | preview media fullscreen | code',
+			content_css: '/css/app.css'
 
 		});
 	</script>

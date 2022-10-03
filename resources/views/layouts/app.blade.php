@@ -10,14 +10,11 @@
 
 	<title>{{ config('app.name', 'Laravel') }}</title>
 
-
-
 	<!-- Styles -->
 	@vite('resources/sass/app.scss')
 	<link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/css-tooltip.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.css" />
-
 
 	<style>
 		html {

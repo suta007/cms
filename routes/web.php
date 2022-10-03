@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\Admin\ViewerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth:web', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-require __DIR__.'/user.php';
+Route::get('/viewer/login', [ViewerController::class, 'login'])->name('viewer.login');
+Route::post('/viewer/auth', [ViewerController::class, 'auth'])->name('viewer.auth');
+
+Route::middleware(['auth:viewer'])->group(function () {
+    Route::get('/page/{slug}', [PageController::class, 'view'])->name('page');
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
+
+//Route::get('user', 'UserController@index')->name('user');
+
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
+require __DIR__ . '/user.php';

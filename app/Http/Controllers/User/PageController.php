@@ -6,6 +6,7 @@ use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use App\Classes\Slug;
 
 class PageController extends Controller
 {
@@ -35,10 +36,11 @@ class PageController extends Controller
         ]);
 
         $inputData = $request->all();
-
+        $inputData["slug"] = Slug::slugify($request->name);
+        $inputData["user_id"] = auth()->user()->id;
         Page::create($inputData);
-        return redirect()->route('user.page.index')->with('success', 'สร้างข้อมูลPageเรียบร้อยแล้ว');
-    /*
+        return redirect()->route('user.page.index')->with('success', 'สร้างหน้าเว็บเรียบร้อยแล้ว');
+        /*
         $result = Page::create($inputData);
         return redirect()->route('user.page.show', $result->id);
      */
@@ -68,15 +70,15 @@ class PageController extends Controller
         $result = Page::findOrFail($id);
         $result->update($inputData);
 
-        return redirect()->route('user.page.index')->with('success', 'แก้ไขข้อมูลPageเรียบร้อยแล้ว');
+        return redirect()->route('user.page.index')->with('success', 'แก้ไขหน้าเว็บเรียบร้อยแล้ว');
 
-    //  return redirect()->route('user.page.show', $result->id);
+        //  return redirect()->route('user.page.show', $result->id);
 
     }
 
     public function destroy($id)
     {
         Page::destroy($id);
-        return redirect()->route('user.page.index')->with('info', 'ลบข้อมูลPageเรียบร้อยแล้ว');
+        return redirect()->route('user.page.index')->with('info', 'ลบหน้าเว็บเรียบร้อยแล้ว');
     }
 }

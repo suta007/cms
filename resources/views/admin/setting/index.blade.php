@@ -22,14 +22,14 @@ $start = ($page - 1) * $perPage;
 @extends('layouts.app')
 @section('content')
 	<x-div class="mx-auto fw-bold fs-5 mb-2 col-12 col-xl-8 text-web">
-		Page
-		<a href="{{ route('user.page.create') }}" class="btn btn-web float-end mb-2">
-			<i class="fa fa-plus me-2" aria-hidden="true"></i> เพิ่มPage
+		Setting
+		<a href="{{ route('admin.setting.create') }}" class="btn btn-web float-end mb-2">
+			<i class="fa fa-plus me-2" aria-hidden="true"></i> เพิ่มSetting
 		</a>
 	</x-div>
 	<div class="clearfix"></div>
 	<x-div class="mx-auto px-5 col-12 col-xl-8">
-		<form method="GET" action="{{ route('user.page.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-start me-2" role="perPage">
+		<form method="GET" action="{{ route('admin.setting.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-start me-2" role="perPage">
 			<div class="input-group">
 				<label for="perPage" class="col-form-label me-2">จำนวน</label>
 				<select name="perPage" id="perPage" class="form-select ">
@@ -46,7 +46,7 @@ $start = ($page - 1) * $perPage;
 				</span>
 			</div>
 		</form>
-		<form method="GET" action="{{ route('user.page.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-end" role="search">
+		<form method="GET" action="{{ route('admin.setting.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-end" role="search">
 			<div class="input-group">
 				<input type="hidden" name="perPage" value="{{ request('perPage') }}">
 				<label for="search" class="col-form-label me-2">ค้นหา</label>
@@ -65,7 +65,7 @@ $start = ($page - 1) * $perPage;
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Page</th>
+					<th>Setting</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -73,12 +73,12 @@ $start = ($page - 1) * $perPage;
 				@foreach ($datas as $item)
 					<tr>
 						<td class="text-nowrap text-center" style="width: 1%;">{{ $start + $loop->iteration }}</td>
-						<td><a href="{{ route('page', $item->slug) }}">{{ $item->name }}</a></td>
+						<td>{{ $item->name }}</td>
 						<td class="text-nowrap" style="width: 1%;">
-							<a href="{{ route('user.page.show', $item->id) }}" data-tooltip="ดู{{ $item->name }}" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
-							<a href="{{ route('user.page.edit', $item->id) }}" data-tooltip="แก้ไข{{ $item->name }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+							<a href="{{ route('admin.setting.show', $item->id) }}" data-tooltip="ดู{{ $item->name }}" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
+							<a href="{{ route('admin.setting.edit', $item->id) }}" data-tooltip="แก้ไข{{ $item->name }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
 
-							<form method="POST" action="{{ route('user.page.destroy', $item->id) }}" accept-charset="UTF-8" style="display:inline">
+							<form method="POST" action="{{ route('admin.setting.destroy', $item->id) }}" accept-charset="UTF-8" style="display:inline">
 								@method('DELETE')
 								@csrf
 								<button type="submit" class="btn btn-danger btn-sm del-btn" data-tooltip="ลบ{{ $item->name }}"><i class="fa-solid fa-trash-can"></i></button>

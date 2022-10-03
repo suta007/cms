@@ -6,7 +6,7 @@ use App\Http\Controllers\User\PostController;
 use App\Http\Controllers\User\PageController;
 use App\Classes\Slug;
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:web')->group(function () {
     Route::get("user/main/edit", [UserController::class, "edit"])->name("user.main.edit");
     Route::patch("user/main/update", [UserController::class, "update"])->name("user.main.update");
     Route::get('user/main/editpass', [UserController::class, "editpass"])->name('user.main.editpass');

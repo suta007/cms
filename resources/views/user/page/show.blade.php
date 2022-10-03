@@ -25,6 +25,10 @@
 						<td class="w-25 text-end pe-2 fw-bold">ชื่อ :</td>
 						<td>{{ $data->name }}</td>
 					</tr>
+					<tr>
+						<td class="w-25 text-end pe-2 fw-bold">หน้าเว็บ :</td>
+						<td class="bg-body">{!! $data->content !!}</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
