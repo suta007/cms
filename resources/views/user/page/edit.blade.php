@@ -32,12 +32,9 @@
 
 		</form>
 	</x-div>
-	<script>
-		var token = '{{ csrf_token() }}';
-	</script>
 @endsection
 
 @section('scriptfile')
 	<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
-	<script src="{{ asset('js/mytunymce.js') }}"></script>
+	<script src="{{ asset('js/tinymceconfig.js') }}"></script>
 @endsection

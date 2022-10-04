@@ -19,4 +19,8 @@ Route::middleware('auth:web')->group(function () {
         $slug = Slug::slugify('กฤษฎาพงษ์ สุตะ ประวัติการศึกษา 2565 school');
         echo $slug;
     });
+
+    Route::prefix('laravel-filemanager')->group(function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });

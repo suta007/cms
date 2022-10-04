@@ -49,7 +49,7 @@ class PageController extends Controller
     public function show($id)
     {
         $data = Page::findOrFail($id);
-        return view('user.page.show', compact('data'));
+        return view('page', compact('data'));
     }
 
     public function edit($id)

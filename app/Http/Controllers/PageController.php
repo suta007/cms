@@ -15,11 +15,12 @@ class PageController extends Controller
             $id = getsetting('page_id');
             $data = Page::where('id', $id)->first();
             return view('page', compact('data'));
-        } else if ($index == "post") {
+        }
+        /*          else if ($index == "post") {
             $id = getsetting('post_id');
             $data = Post::where('id', $id)->first();
             return view('post', compact('data'));
-        }
+        } */
     }
     public function view($slug)
     {
