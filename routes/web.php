@@ -14,6 +14,10 @@ use App\Http\Controllers\Admin\ViewerController;
 |
 */
 
+Route::get('/', function () {
+    return view('layouts.guest');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth:web', 'verified'])->name('dashboard');
@@ -27,7 +31,7 @@ Route::post('/viewer/auth', [ViewerController::class, 'auth'])->name('viewer.aut
 
 //Route::middleware(['auth:viewer'])->group(function () {
 Route::get('/page/{slug}', [PageController::class, 'view'])->name('page');
-Route::get('/', [PageController::class, 'index']);
+//Route::get('/', [PageController::class, 'index']);
 //});
 
 //Route::get('user', 'UserController@index')->name('user');
