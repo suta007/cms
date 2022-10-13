@@ -21,6 +21,11 @@
 			font-size: 14px !important;
 			font-family: 'Sarabun', sans-serif;
 		}
+
+		.btn-web,
+		.btn-danger {
+			color: var(--bs-light) !important;
+		}
 	</style>
 	@yield('css')
 </head>

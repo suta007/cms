@@ -49,12 +49,13 @@
     text-decoration: none;
 }
 
-.btn-toggle:hover,
+
 .navlink:hover,
+.btn-toggle:hover,
 .btn-toggle:focus,
 .btn-toggle[aria-expanded="true"] {
-    color: var(--bs-light);
-    background-color: var(--bs-web);
+    color: var(--bs-light) !important;
+    background-color: var(--bs-web) !important;
 }
 
 

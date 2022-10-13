@@ -14,19 +14,21 @@ use App\Http\Controllers\Admin\ViewerController;
 |
 */
 
-Route::post('/upload', [PageController::class, 'upload']);
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth:web', 'verified'])->name('dashboard');
 
-Route::get('/viewer/login', [ViewerController::class, 'login'])->name('viewer.login');
-Route::post('/viewer/auth', [ViewerController::class, 'auth'])->name('viewer.auth');
+Route::post('/upload', [PageController::class, 'upload']);
 
-Route::middleware(['auth:viewer'])->group(function () {
-    Route::get('/page/{slug}', [PageController::class, 'view'])->name('page');
-    Route::get('/', [PageController::class, 'index']);
-});
+
+
+/* Route::get('/viewer/login', [ViewerController::class, 'login'])->name('viewer.login');
+Route::post('/viewer/auth', [ViewerController::class, 'auth'])->name('viewer.auth'); */
+
+//Route::middleware(['auth:viewer'])->group(function () {
+Route::get('/page/{slug}', [PageController::class, 'view'])->name('page');
+Route::get('/', [PageController::class, 'index']);
+//});
 
 //Route::get('user', 'UserController@index')->name('user');
 

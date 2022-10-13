@@ -11,10 +11,19 @@
 @import "variables";
 @import "~bootstrap/scss/variables";
 
-
+$theme-colors: (
+    "primary": #3B71CA,
+    "secondary": #9FA6B2,
+    "success":#14A44D,
+    "info": #54B4D3,
+    "warning": #E4A11B,
+    "danger": #DC4C64,
+    "light": #FBFBFB,
+    "dark": #332D2D
+);
 // Create your own map
 $custom-colors: (
-    "web": #3e0505
+    "web": #F87666
 );
 
 // Merge the maps

@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('viewers', function (Blueprint $table) {
+        /*         Schema::create('viewers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username', 100)->unique();
             $table->string('password');
             $table->timestamp('last_login')->nullable();
             $table->timestamps();
-        });
+        }); */
     }
 
     /**
